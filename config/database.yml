@@ -1,0 +1,15 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: music_player_api
+  pool: 5
+  username: root
+  password: asdf1234
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  database: music_player_api
+  pool: 5
+  username: root
+  password: cr2ativity
