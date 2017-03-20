@@ -106,6 +106,7 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
+    ruby-mp3info (0.8.10)
     spring (2.0.1)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -138,8 +139,12 @@ DEPENDENCIES
   rack-attack
   rack-cors
   rails (~> 5.0.2)
+  ruby-mp3info
   spring
   spring-watcher-listen (~> 2.0.0)
+
+RUBY VERSION
+   ruby 2.3.3p222
 
 BUNDLED WITH
    1.14.6
