@@ -35,5 +35,7 @@ module MusicPlayerApi
     end
 
     config.middleware.use Rack::Attack
+
+    config.autoload_paths += %W(#{config.root}/app/utils)
   end
 end

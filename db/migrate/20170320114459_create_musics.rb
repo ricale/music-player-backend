@@ -10,6 +10,9 @@ class CreateMusics < ActiveRecord::Migration[5.0]
       t.integer :discnum
       t.integer :tracknum
 
+      t.string  :path
+      t.string  :images
+
       t.timestamps
     end
   end

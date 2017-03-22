@@ -15,14 +15,17 @@ ActiveRecord::Schema.define(version: 20170320134525) do
   create_table "albums", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
     t.integer  "artist_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "album_artist_id"
+    t.string   "images"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "artists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "artist_type_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "musics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -32,6 +35,8 @@ ActiveRecord::Schema.define(version: 20170320134525) do
     t.integer  "album_artist_id"
     t.integer  "discnum"
     t.integer  "tracknum"
+    t.string   "path"
+    t.string   "images"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
