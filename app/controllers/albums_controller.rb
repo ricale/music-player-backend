@@ -3,9 +3,13 @@ class AlbumsController < ApplicationController
 
   # GET /albums
   def index
-    @albums = Album.all
+    @albums  = Album.all
 
-    render json: @albums
+    artist_ids = @albums.map(&:artist_id).concat(@albums.map(&:album_artist_id)).uniq - [nil]
+    @artists = Artist.where(id: artist_ids)
+
+    album_ids = @albums.map(&:id)
+    @tracks = Music.where(album_id: album_ids)
   end
 
   # GET /albums/1

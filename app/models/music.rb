@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: musics
+#
+#  id              :integer          not null, primary key
+#  title           :string(255)
+#  artist_id       :integer
+#  album_id        :integer
+#  album_artist_id :integer
+#  discnum         :integer
+#  tracknum        :integer
+#  path            :string(255)
+#  images          :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 require 'mp3info'
 
 class Music < ApplicationRecord
@@ -75,7 +92,7 @@ class Music < ApplicationRecord
         album = album_hash[album_title]
 
         begin
-          key = "#{album.try(:id)}_#{artist.try(:id)}_#{album_artist.try(:id)}"
+          key = "#{album.try(:id)}_#{album_artist.try(:id) || artist.try(:id)}"
           if album_image_hash[key].blank?
             album_image_hash[key] = MusicUtil.save_album_art_image_using_tag2_pictures(mp3, directory, key)
           end
