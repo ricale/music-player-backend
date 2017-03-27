@@ -14,7 +14,9 @@ class AlbumsController < ApplicationController
 
   # GET /albums/1
   def show
-    render json: @album
+    @artist = Artist.where(id: @album.artist_id).first
+    @album_aritst = Artist.where(id: @album.album_artist_id).first
+    @tracks = Music.where(album_id: @album.id)
   end
 
   # POST /albums
