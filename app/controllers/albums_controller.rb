@@ -9,7 +9,11 @@ class AlbumsController < ApplicationController
     @artists = Artist.where(id: artist_ids)
 
     album_ids = @albums.map(&:id)
-    @tracks = Music.where(album_id: album_ids)
+    @tracks = Music.where(album_id: album_ids).inject({}) do |hash, music|
+      hash[music.album_id] ||= []
+      hash[music.album_id] << music
+      hash
+    end
   end
 
   # GET /albums/1
