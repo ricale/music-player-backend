@@ -1,4 +1,4 @@
-class ArtistsController < ApplicationController
+class Api::V1::ArtistsController < ApplicationController
   before_action :set_artist, only: [:show, :update, :destroy]
 
   # GET /artists

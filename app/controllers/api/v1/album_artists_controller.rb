@@ -1,24 +1,24 @@
 class Api::V1::AlbumArtistsController < ApplicationController
-  before_action :set_artist, only: [:show, :update, :destroy]
+  before_action :set_album_artist, only: [:show, :update, :destroy]
 
   # GET /album_artists
   def index
-    @artists = Artist.where(artist_type_id: Artist::TYPE_ALBUM_ARTIST)
+    @album_artists = Artist.where(artist_type_id: Artist::TYPE_ALBUM_ARTIST)
   end
 
   # GET /album_artists/1
   def show
-    render json: @artist
+    @albums = Album.where(album_artist_id: @album_artist.id)
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_artist
-      @artist = Artist.find(params[:id])
+    def set_album_artist
+      @album_artist = Artist.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
-    def artist_params
-      params.require(:artist).permit(:name)
-    end
+    # # Only allow a trusted parameter "white list" through.
+    # def artist_params
+    #   params.require(:artist).permit(:name)
+    # end
 end
