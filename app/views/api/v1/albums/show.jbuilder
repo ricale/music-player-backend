@@ -1,11 +1,11 @@
 json.id              @album.id
 json.title           @album.title
 json.images          @album.images
-json.artist_id       @album.artist_id
+# json.artist_id       @album.artist_id
 json.album_artist_id @album.album_artist_id
 
-if !@artist.blank?
-  json.artist @artist,
+if !@artists.blank?
+  json.artists @artists,
     :id,
     :name
 end

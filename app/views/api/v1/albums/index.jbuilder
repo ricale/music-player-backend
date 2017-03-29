@@ -2,15 +2,15 @@ json.array! @albums do |album|
   json.id              album.id
   json.title           album.title
   json.images          album.images
-  json.artist_id       album.artist_id
+  # json.artist_id       album.artist_id
   json.album_artist_id album.album_artist_id
 
-  if !album.artist_id.blank? &&
-    !@artists[album.artist_id].blank?
-    json.artist @artists[album.artist_id],
-      :id,
-      :name
-  end
+  # if !album.artist_id.blank? &&
+  #   !@artists[album.artist_id].blank?
+  #   json.artist @artists[album.artist_id],
+  #     :id,
+  #     :name
+  # end
 
   if !album.album_artist_id.blank? &&
     !@artists[album.album_artist_id].blank?

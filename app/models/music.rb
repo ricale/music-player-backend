@@ -65,21 +65,21 @@ class Music < ApplicationRecord
         discnum  = mp3.tag2[DISC_NUMBER].to_i
 
         artist_name = mp3.tag.artist
-        album_artist_name = mp3.tag2[ALBUM_ARTIST]
+        album_artist_name = mp3.tag2[ALBUM_ARTIST] || artist_name
         album_title = mp3.tag.album
 
         artist = get_artist.call(
           artist_hash,
-          artist_name,
+          "#{artist_name}_#{Artist::TYPE_ARTIST}",
           name: artist_name,
-          artist_type_id: 1
+          artist_type_id: Artist::TYPE_ARTIST
         )
 
         album_artist = get_artist.call(
           artist_hash,
-          album_artist_name,
+          "#{album_artist_name}_#{Artist::TYPE_ALBUM_ARTIST}",
           name: album_artist_name,
-          artist_type_id: 2
+          artist_type_id: Artist::TYPE_ALBUM_ARTIST
         )
 
         if !album_title.blank? && album_hash[album_title].blank?
@@ -114,6 +114,8 @@ class Music < ApplicationRecord
         )
       end
     end
+
+    Album.update_images_by_musics
 
     image_errors
   end

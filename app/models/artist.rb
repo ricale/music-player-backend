@@ -10,4 +10,6 @@
 #
 
 class Artist < ApplicationRecord
+  TYPE_ARTIST = 1
+  TYPE_ALBUM_ARTIST = 2
 end
