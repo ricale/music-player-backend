@@ -29,9 +29,7 @@ class Music < ApplicationRecord
   # - 메서드 시작 시 Music 일괄 삭제 후 일괄 생성
   # - music에 path 컬럼 추가
   # 이미지 관련 정보 저장 로직 필요
-  def self.delete_and_recreate_all_musics
-    file_names = Dir["#{Rails.root}/public/musics/**/*.mp3"]
-
+  def self.delete_and_recreate_all_musics(file_names) # Dir["/Users/ricale/Dropbox/music/**/*.mp3"]
     artist_hash = {}
     album_hash  = {}
     album_image_hash = {}
@@ -118,5 +116,18 @@ class Music < ApplicationRecord
     Album.update_images_by_musics
 
     image_errors
+  end
+
+
+  def self.move_files_to_public_path_and_update_path
+    musics = Music.all
+
+    musics.each do |m|
+      filename = "#{m.album_id}-#{m.album_artist_id}-#{m.discnum}-#{m.tracknum}"
+      FileUtils.cp(m.path, "#{Rails.root}/public/musics/#{filename}.mp3")
+      m.update_attributes!(path: "musics/#{filename}.mp3")
+    end
+
+    true
   end
 end
