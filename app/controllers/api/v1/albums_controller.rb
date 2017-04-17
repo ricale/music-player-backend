@@ -3,16 +3,17 @@ class Api::V1::AlbumsController < ApplicationController
 
   # GET /albums
   def index
-    @albums  = Album.all
+    @albums = Album.all
 
-    # artist_ids = @albums.map(&:artist_id).concat(@albums.map(&:album_artist_id)).uniq - [nil]
-    artist_ids = @albums.map(&:album_artist_id).uniq
-    @artists = Artist.where(id: artist_ids).inject({}) do |hash, artist|
+    # artist_ids = @albums.map(&:album_artist_id).uniq
+    # @artists = Artist.where(id: artist_ids).inject({}) do |hash, artist|
+    @artists = Artist.all.inject({}) do |hash, artist|
       hash.merge({artist.id => artist})
     end
 
-    album_ids = @albums.map(&:id)
-    @tracks = Music.where(album_id: album_ids).inject({}) do |hash, music|
+    # album_ids = @albums.map(&:id)
+    # @tracks = Music.where(album_id: album_ids).inject({}) do |hash, music|
+    @tracks = Music.all.inject({}) do |hash, music|
       hash[music.album_id] ||= []
       hash[music.album_id] << music
       hash

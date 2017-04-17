@@ -17,6 +17,8 @@
 
 require 'mp3info'
 
+# Music.delete_and_recreate_all_musics(Dir["/Users/ricale/Dropbox/music/pop/**/*.mp3"])
+# Music.move_files_to_public_path_and_update_path
 class Music < ApplicationRecord
   ALBUM_ARTIST = "TPE2"
   ALBUM_TITLE  = "TALB"
